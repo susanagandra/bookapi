@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Table, Form, Button } from "react-bootstrap";
 import UserProfile from "../user";
 import NewBook from "./newbook";
+import UpdateBook from "./updatebook";
 
 const BookList = () => {
   const [error, setError] = useState(null);
   const [bookItem, setBookItem] = useState([]);
   const [filterBookId, setFilterBookId] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [year, setYear] = useState("");
-  const [showInsertForm, setShowInsertForm] = useState("");
   const token = sessionStorage.getItem("token");
   
 
@@ -118,7 +115,7 @@ return (
               />
             </td>
             <td>
-              <button onClick={() => (bookItem.id)}>Update Book</button>
+              <UpdateBook />
             </td>
             <td>
               <button onClick={() => handleDeleteBook(bookItem.id)}>
