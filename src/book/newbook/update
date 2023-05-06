@@ -1,0 +1,34 @@
+  /*const handleUpdateBook = (id) => {
+
+    const updatedBook = {
+      title: bookItem.title,
+      year: bookItem.year,
+      description: bookItem.description,
+      book_cover: bookItem.book_cover,
+    };
+
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+      body: JSON.stringify(updatedBook),
+    };
+  
+    fetch(`http://5.22.217.225:8081/api/v1/book/${bookItem.id}`, requestOptions)
+      .then((response) => response.json())
+      .then(() => {
+        setBookItem((bookItem) => {
+          const updatedBook = [...bookItem];
+          const index = updatedBook.findIndex((book) => bookItem.id === id);
+          updatedBook[index] = {id, ...updatedBook };
+          return updatedBook;
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setError("This Book can not be Updated.");
+      });
+  };
+*/
