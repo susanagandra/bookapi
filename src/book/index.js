@@ -118,9 +118,19 @@ return (
               <UpdateBook />
             </td>
             <td>
-              <button onClick={() => handleDeleteBook(bookItem.id)}>
+              <button 
+                onClick={() => handleDeleteBook(bookItem.id)}
+                style={{
+                  backgroundColor: 'red', 
+                  color: 'white',
+                  padding: '5px 5px',
+                  borderRadius: '5px',
+                  border: "none",
+                }}
+              >
                 Delete Book
               </button>
+
             </td>
           </tr>
         ))}

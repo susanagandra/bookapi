@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const UpdateBook = (props) => {
+const UpdateBook = () => {
+  const [error, setError] = useState(null);
+  const [bookItem, setBookItem] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState(props.title);
-  const [year, setYear] = useState(props.year);
-  const [description, setDescription] = useState(props.description);
-  const [book_cover, setBookCover] = useState(props.book_cover);
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState("");
+  const [description, setDescription] = useState("");
+  const [book_cover, setBookCover] = useState("");
   const token = sessionStorage.getItem("token");
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  const handleUpdateBook = (event) => {
-    event.preventDefault();
-
+  const handleUpdateBook = (id) => {
+    
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -29,11 +30,11 @@ const UpdateBook = (props) => {
       }),
     };
 
-    fetch(`http://5.22.217.225:8081/api/v1/book/`, requestOptions)
+    fetch(`http://5.22.217.225:8081/api/v1/book/${id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setTitle(data.date.title);
+        setBookItem(data.data);
+        setTitle(data.data.title);
         setYear(data.data.year);
         setDescription(data.data.description);
         setBookCover(data.data.book_cover);
@@ -42,7 +43,7 @@ const UpdateBook = (props) => {
       })
       .catch((error) => {
         console.error(error);
-        alert("An error occurred while updating the book.");
+        setError("An error occurred while updating the book.");
       });
   };
 
