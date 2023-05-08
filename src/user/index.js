@@ -33,7 +33,10 @@ const UserProfile = () => {
       });
   }, []);
 
-  const updateUserProfile = () => {
+  const updateUserProfile = (event) => {
+
+    event.preventDefault();
+
     const requestOptions = {
       method: "PUT",
       headers: {

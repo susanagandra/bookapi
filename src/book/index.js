@@ -115,7 +115,7 @@ return (
               />
             </td>
             <td>
-              <UpdateBook />
+              <UpdateBook handleupdateBook={bookItem.id}/>
             </td>
             <td>
               <button 

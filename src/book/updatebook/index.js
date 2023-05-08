@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const UpdateBook = () => {
-  const [error, setError] = useState(null);
-  const [bookItem, setBookItem] = useState([]);
+const UpdateBook = ({bookItem}) => {
+  const [book, setBook]= useState([]);
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
@@ -14,37 +13,41 @@ const UpdateBook = () => {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  const handleUpdateBook = (id) => {
-    
+  const handleUpdateBook = (event) => {
+
+    event.preventDefault();
+       
     const requestOptions = {
-      method: "PUT",
-      headers: {
+     method: "PUT",
+     headers: {
         "Content-Type": "application/json",
         Authorization: `${token}`,
-      },
-      body: JSON.stringify({
-        title: title,
-        year: year,
-        description: description,
-        book_cover: book_cover,
-      }),
-    };
+       },
+     body: JSON.stringify({
+         title: title,
+         year: year,
+         description: description,
+         book_cover: book_cover,
+       }),
+     };
 
-    fetch(`http://5.22.217.225:8081/api/v1/book/${id}`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setBookItem(data.data);
-        setTitle(data.data.title);
-        setYear(data.data.year);
-        setDescription(data.data.description);
-        setBookCover(data.data.book_cover);
-        handleCloseModal();
-        window.location.reload(); // Refreshes the page to show the updated book
-      })
-      .catch((error) => {
-        console.error(error);
-        setError("An error occurred while updating the book.");
-      });
+
+
+     fetch(`http://5.22.217.225:8081/api/v1/book/${bookItem.id}`, requestOptions)
+       .then((response) => response.json())
+       .then((data) => {
+         setBook(data.data);
+         setTitle(data.data.title);
+         setYear(data.data.year);
+         setDescription(data.data.description);
+         setBookCover(data.data.book_cover);
+         handleCloseModal();
+         window.location.reload(); // Refreshes the page to show the updated book
+       })
+       .catch((error) => {
+         console.error(error);
+         alert("An error occurred while updating the book.");
+       });
   };
 
   return (
@@ -58,7 +61,7 @@ const UpdateBook = () => {
           <Modal.Title>Update Book</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleUpdateBook}>
+          <Form onSubmit={handleUpdateBook} value={bookItem.id}>
             <Form.Group controlId="formTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control
