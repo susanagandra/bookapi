@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const LoginForm = styled.div`
+  align-content: center;
   background-color: #ffffff;
   padding:55px;
   border-radius: 8px;

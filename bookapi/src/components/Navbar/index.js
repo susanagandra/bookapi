@@ -18,11 +18,12 @@ function Navbar() {
     <NavbarContainer extendNavbar={extendNavbar}>
       <NavbarInnerContainer>
         <LeftContainer>
-          <NavbarLinkContainer>
-            <NavbarLink to="/"> Home</NavbarLink>
+        <NavbarLink to="/"> Book Store </NavbarLink>
+        </LeftContainer>
+        <RightContainer>
+        <NavbarLinkContainer>
             <NavbarLink to="/login"> Login</NavbarLink>
             <NavbarLink to="/register"> Register</NavbarLink>
-            <NavbarLink to="/about"> About Us</NavbarLink>
             <OpenLinksButton
               onClick={() => {
                 setExtendNavbar((curr) => !curr);
@@ -31,16 +32,14 @@ function Navbar() {
               {extendNavbar ? <>&#10005;</> : <> &#8801;</>}
             </OpenLinksButton>
           </NavbarLinkContainer>
-        </LeftContainer>
-        <RightContainer>
         </RightContainer>
       </NavbarInnerContainer>
       {extendNavbar && (
         <HamburgerMenu>
-          <NavbarLinkExtended to="/"> Home</NavbarLinkExtended>
+          <NavbarLinkExtended to="/">
+          </NavbarLinkExtended>
           <NavbarLinkExtended to="/login"> Login</NavbarLinkExtended>
           <NavbarLinkExtended to="/register"> Register</NavbarLinkExtended>
-          <NavbarLinkExtended to="/about"> About Us</NavbarLinkExtended>
         </HamburgerMenu>
       )}
     </NavbarContainer>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export const NavbarContainer = styled.nav`
   width: 100%;
-  height: ${(props) => (props.extendNavbar ? "100vh" : "80px")};
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -14,18 +13,20 @@ export const NavbarContainer = styled.nav`
 `;
 
 export const LeftContainer = styled.div`
-  flex: 70%;
   display: flex;
+  justify-content:center;
   align-items: center;
-  padding-left: 5%;
+  padding-left: 50px;
 `;
 
 export const RightContainer = styled.div`
-  flex: 30%;
+  flex: 70%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding-right: 50px;
 `;
+
 
 export const NavbarInnerContainer = styled.div`
   width: 100%;
@@ -35,6 +36,7 @@ export const NavbarInnerContainer = styled.div`
 
 export const NavbarLinkContainer = styled.div`
   display: flex;
+  justify-content: flex-end;
 `;
 
 export const NavbarLink = styled(Link)`
@@ -86,3 +88,4 @@ export const HamburgerMenu = styled.div`
     display: none;
   }
 `;
+
