@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FilterContainer, Button, Label, Input, Container, BookItemContainer, Title, Year, Description, BookCover,
-  DeleteButton,
-} from "./style";
+  DeleteButton } from "./style";
+import Navbar from "../Navbar";
 
 const BookList = () => {
-  const [error, setError] = useState(null);
+  const [setError] = useState(null);
   const [bookItem, setBookItem] = useState([]);
   const [filterBookId, setFilterBookId] = useState("");
   const token = sessionStorage.getItem("token");
@@ -69,6 +69,7 @@ const BookList = () => {
 
   return (
     <>
+      <Navbar/>
       <FilterContainer>
         <Label>Find a book by ID:</Label>
         <Input

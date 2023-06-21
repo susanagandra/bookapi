@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { NavbarContainer, LeftContainer, RightContainer, NavbarInnerContainer, NavbarLinkContainer, NavbarLink, OpenLinksButton,
-  NavbarLinkExtended,HamburgerMenu } from "./style";
+import {
+  NavbarContainer,
+  LeftContainer,
+  RightContainer,
+  NavbarInnerContainer,
+  NavbarLinkContainer,
+  NavbarLink,
+  OpenLinksButton,
+  NavbarLinkExtended,
+  HamburgerMenu,
+} from "./style";
 
 function Navbar() {
   const [extendNavbar, setExtendNavbar] = useState(false);
@@ -13,7 +22,8 @@ function Navbar() {
         </LeftContainer>
         <RightContainer>
         <NavbarLinkContainer>
-            <NavbarLink to="/book">Update Account</NavbarLink>
+            <NavbarLink to="/login"> Login</NavbarLink>
+            <NavbarLink to="/register"> Register</NavbarLink>
             <OpenLinksButton
               onClick={() => {
                 setExtendNavbar((curr) => !curr);
@@ -28,7 +38,8 @@ function Navbar() {
         <HamburgerMenu>
           <NavbarLinkExtended to="/">
           </NavbarLinkExtended>
-          <NavbarLinkExtended to="/book">Update Account</NavbarLinkExtended>
+          <NavbarLinkExtended to="/login"> Login</NavbarLinkExtended>
+          <NavbarLinkExtended to="/register"> Register</NavbarLinkExtended>
         </HamburgerMenu>
       )}
     </NavbarContainer>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import validator from "validator";
 import { RegisterContainer, RegisterForm, Title, Form, FormField, Label, Input,Button } from "./styled";
+import AuthenticatedNavbar from "../AuthenticatedNavbar";
 
 
 const SignIn = () => {
@@ -46,6 +47,8 @@ const SignIn = () => {
   };
 
   return (
+    <>
+    <AuthenticatedNavbar />
     <RegisterContainer>
       <RegisterForm>
         <Title>Sign In</Title>
@@ -86,6 +89,7 @@ const SignIn = () => {
     </Form>
     </RegisterForm>
     </RegisterContainer>
+    </>
   );
 }
 

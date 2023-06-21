@@ -55,3 +55,37 @@ export const Button = styled.button`
     background-color: #0056b3;
   }
 `;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalContent = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+`;
+
+
+export const CloseButton = styled.button`
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+`;
+
+export const ErrorMessage = styled.div`
+  color: black;
+  margin-bottom: 10px;
+`;

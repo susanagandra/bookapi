@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import validator from "validator";
-import { Container, LoginForm, Title, Form, FormField, Button, Label, Input } from "./style";
+import { Container, LoginForm, Title, Form, FormField, Button, Label, Input, Modal, ModalContent, CloseButton, ErrorMessage } from "./style";
+import AuthenticatedNavbar from "../AuthenticatedNavbar";
 import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!validator.isEmail(email)) {
       setErrorMessage("Please enter a valid email");
+      setShowModal(true);
       return;
     }
 
@@ -30,50 +33,63 @@ const Login = () => {
 
         if (data.data.token) {
           window.location.href = `./book`;
-        } else {
-          setErrorMessage("Invalid email or password.");
-        }
+        } 
       })
       .catch((error) => {
         console.error(error);
-        setErrorMessage("Authentication error.");
+        setErrorMessage("Invalid email or password");
+        setShowModal(true);
       });
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <Container>
-      <LoginForm>
-        <Title>Login</Title>
-        <Form onSubmit={handleSubmit}>
-          <FormField>
-            <Label>Email:</Label>
+    <>
+      <AuthenticatedNavbar />
+      <Container>
+        <LoginForm>
+          <Title>Login</Title>
+          <Form onSubmit={handleSubmit}>
+            <FormField>
+              <Label>Email:</Label>
               <Input
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              autoComplete="username"
-              fontFamily="Arial, sans-serif"
-            />
-          </FormField>
-          <FormField>
-            <Label>Password:</Label>
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                autoComplete="username"
+                fontFamily="Arial, sans-serif"
+              />
+            </FormField>
+            <FormField>
+              <Label>Password:</Label>
               <Input
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              autoComplete="current-password"
-              fontFamily="Arial, sans-serif"
-            />
-          </FormField>
-          <Button type="submit">Login</Button>
-        </Form>
-        <span>
-        Don´t have an account?
-        <Link to="/register">Sign in </Link>
-      </span>
-      </LoginForm>
-    </Container>
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                autoComplete="current-password"
+                fontFamily="Arial, sans-serif"
+              />
+            </FormField>
+            <Button type="submit">Login</Button>
+          </Form>
+          <span>
+            Don't have an account? <Link to="/register">Sign in</Link>
+          </span>
+        </LoginForm>
+      </Container>
+      {showModal && (
+        <Modal>
+          <ModalContent>
+            <CloseButton onClick={closeModal}>Close</CloseButton>
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+          </ModalContent>
+        </Modal>
+      )}
+    </>
   );
 };
-  
+
 export default Login;
