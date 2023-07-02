@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { NavbarContainer, LeftContainer, RightContainer, NavbarInnerContainer, NavbarLinkContainer, NavbarLink, OpenLinksButton,
-  NavbarLinkExtended,HamburgerMenu } from "./style";
+import { NavbarContainer, LeftContainer, RightContainer, NavbarInnerContainer, NavbarLinkContainer, NavbarLink, OpenLinksButton, NavbarLinkExtended, HamburgerMenu } from "./style";
+import NewBook from "../NewBook";
 
 function Navbar() {
   const [extendNavbar, setExtendNavbar] = useState(false);
@@ -9,11 +9,13 @@ function Navbar() {
     <NavbarContainer extendNavbar={extendNavbar}>
       <NavbarInnerContainer>
         <LeftContainer>
-        <NavbarLink to="/"> Book Store </NavbarLink>
+          <NavbarLink to="/"> Book Store </NavbarLink>
         </LeftContainer>
         <RightContainer>
-        <NavbarLinkContainer>
-            <NavbarLink to="/book"> Add New Book</NavbarLink>
+          <NavbarLinkContainer>
+            <NavbarLink to="/newbook" onClick={() => setExtendNavbar(false)}>
+              Add New Book
+            </NavbarLink>
             <OpenLinksButton
               onClick={() => {
                 setExtendNavbar((curr) => !curr);
@@ -26,11 +28,11 @@ function Navbar() {
       </NavbarInnerContainer>
       {extendNavbar && (
         <HamburgerMenu>
-          <NavbarLinkExtended to="/">
-          </NavbarLinkExtended>
+          <NavbarLinkExtended to="/" />
           <NavbarLinkExtended to="/book">Update Account</NavbarLinkExtended>
         </HamburgerMenu>
       )}
+      {extendNavbar && <NewBook />}
     </NavbarContainer>
   );
 }
