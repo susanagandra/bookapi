@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Container, UserInfoContainer, Name, Email, ProfilePicture, UpdateButton, ModalOverlay, ModalContainer, ModalTitle, ModalCloseButton, ModalForm, ModalFormGroup, ModalLabel, ModalInput, ModalActions, ModalSubmitButton, ModalCancelButton } from "./style.js";
 
 const UserProfile = () => {
-  const [error, setError] = useState(null);
+  const [setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState([]);
   const [name, setName] = useState("");
@@ -70,68 +71,61 @@ const UserProfile = () => {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <div style={{ display: "flex", alignItems: "flex-start", marginBottom: "20px"}}>
-      <div>
-        <div>{user.name}</div>
-        <div>{user.email}</div>
-        <img
-          src={user.profile_picture}
-          alt={user.name}
-          style={{ maxWidth: "40%", height: "auto" }}
-        />
-      </div>
+    <Container>
+    <UserInfoContainer>
+      <Name>{user.name}</Name>
+      <Email>{user.email}</Email>
+      <ProfilePicture src={user.profile_picture} alt={user.name} />
+    </UserInfoContainer>
 
-      <Button variant="primary" onClick={handleShowModal}>
-        Update Profile
-      </Button>
+    <UpdateButton onClick={handleShowModal}>Update Profile</UpdateButton>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
-    
-        <Modal.Header closeButton>
-          <Modal.Title>Update Profile</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={updateUserProfile}>
-            <Form.Group controlId="formTitle">
-              <Form.Label>Neme: </Form.Label>
-              <Form.Control
+    {showModal && (
+      <ModalOverlay>
+        <ModalContainer>
+          <ModalCloseButton onClick={handleCloseModal}>X</ModalCloseButton>
+          <ModalTitle>Update Profile</ModalTitle>
+          <ModalForm onSubmit={updateUserProfile}>
+            <ModalFormGroup>
+              <ModalLabel>Name:</ModalLabel>
+              <ModalInput
                 type="text"
                 placeholder="Enter name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group controlId="formYear">
-              <Form.Label>Email: </Form.Label>
-              <Form.Control
+            </ModalFormGroup>
+            <ModalFormGroup>
+              <ModalLabel>Email:</ModalLabel>
+              <ModalInput
                 type="text"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group controlId="formProfilePicture">
-              <Form.Label>Profile picture: </Form.Label>
-              <Form.Control
-               as="textarea" 
-               rows={5} placeholder="Enter image" 
-               value={profilePicture} 
-               onChange={(e) => setProfilePicture(e.target.value)} 
-               />
-
-              </Form.Group>
-              <Button variant="primary" type="submit">
-              Update
-            </Button>{" "}
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Cancel
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
-      
-    </div>
-  );
+            </ModalFormGroup>
+            <ModalFormGroup>
+              <ModalLabel>Profile picture:</ModalLabel>
+              <ModalInput
+                as="textarea"
+                rows={5}
+                placeholder="Enter image"
+                value={profilePicture}
+                onChange={(e) => setProfilePicture(e.target.value)}
+              />
+            </ModalFormGroup>
+            <ModalActions>
+              <ModalSubmitButton type="submit">Update</ModalSubmitButton>
+              <ModalCancelButton onClick={handleCloseModal}>
+                Cancel
+              </ModalCancelButton>
+            </ModalActions>
+          </ModalForm>
+        </ModalContainer>
+      </ModalOverlay>
+    )}
+  </Container>
+);
 };
 
 export default UserProfile;

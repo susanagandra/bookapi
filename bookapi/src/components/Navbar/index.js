@@ -13,7 +13,7 @@ function Navbar() {
         </LeftContainer>
         <RightContainer>
         <NavbarLinkContainer>
-            <NavbarLink to="/book">Update Account</NavbarLink>
+            <NavbarLink to="/book"> Add New Book</NavbarLink>
             <OpenLinksButton
               onClick={() => {
                 setExtendNavbar((curr) => !curr);
@@ -21,7 +21,7 @@ function Navbar() {
             >
               {extendNavbar ? <>&#10005;</> : <> &#8801;</>}
             </OpenLinksButton>
-          </NavbarLinkContainer>
+          </NavbarLinkContainer>©
         </RightContainer>
       </NavbarInnerContainer>
       {extendNavbar && (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FilterContainer, Button, Label, Input, Container, BookItemContainer, Title, Year, Description, BookCover,
   DeleteButton } from "./style";
 import Navbar from "../Navbar";
+import UserProfile from "../User";
 
 const BookList = () => {
   const [setError] = useState(null);
@@ -70,6 +71,7 @@ const BookList = () => {
   return (
     <>
       <Navbar/>
+      <UserProfile />
       <FilterContainer>
         <Label>Find a book by ID:</Label>
         <Input
